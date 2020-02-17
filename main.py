@@ -48,7 +48,7 @@ for prak in praktikans:
         randval = random.randint(0,5)
         kelompok = chr(65+randval)
     randval = random.randint(1,4)
-    while(len(plot[kelompok+str(randval)])>3):
+    while(len(plot[kelompok+str(randval)])>minimal):
         randval = random.randint(1,4)
     plot[kelompok+str(randval)].append(prak)
 
