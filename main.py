@@ -21,10 +21,10 @@ for line in f:
 f = open('praktikans.txt', 'r')
 for line in f:
     line = line.rstrip().split(';')
-    jml = int(line[1])
-    for i in range(jml):
-        praktikans.append(line[0]+str(i+1))
-    total_prak += jml
+    praks = line[1].rstrip().split(',')
+    for i in praks:
+        praktikans.append(line[0]+i)
+    total_prak += len(praks)
 
 maksimal = math.ceil(total_prak/total_as)
 minimal = math.floor(total_prak/total_as)
@@ -34,7 +34,7 @@ print('>>assigning praktikans to asisten')
 for asisten in asistens:
     for i in range(asisten['jml']):
         prak_plot = []
-        for j in range(3):
+        for j in range(minimal):
             #randomize
             randval = random.randint(0,len(praktikans))
             while(praktikans[randval-1][0] == asisten['kelompok']):
@@ -54,6 +54,11 @@ for prak in praktikans:
         kelompok = chr(65+randval)
     randval = random.randint(1,4)
     while(len(plot[kelompok+str(randval)])>minimal):
+        randval = random.randint(0,5)
+        kelompok= chr(65+randval)
+        while(prak[0] == kelompok):
+            randval = random.randint(0,5)
+            kelompok= chr(65+randval)
         randval = random.randint(1,4)
     plot[kelompok+str(randval)].append(prak)
 
